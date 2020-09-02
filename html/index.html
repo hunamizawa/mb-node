@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mb-node</title>
+</head>
+<body>
+    <h1>mb-node</h1>
+    <p><strong>Let's print images using MBrush</strong></p>
+    <p>NOTE: The height of the image is forced to scale to 14.29mm.</p>
+
+    <form method="POST" enctype="multipart/form-data" action="/print">
+        <label for="img0">Image 1</label><input type="file" name="img0" id="img0" accept="image/png" required /><br>
+        <label for="img1">Image 2</label><input type="file" name="img1" id="img1" accept="image/png" /><br>
+        <label for="img2">Image 3</label><input type="file" name="img2" id="img2" accept="image/png" /><br>
+        <label for="img3">Image 4</label><input type="file" name="img3" id="img3" accept="image/png" /><br>
+        <label for="img4">Image 5</label><input type="file" name="img4" id="img4" accept="image/png" /><br>
+        <label for="img5">Image 6</label><input type="file" name="img5" id="img5" accept="image/png" /><br>
+        <label for="img6">Image 7</label><input type="file" name="img6" id="img6" accept="image/png" /><br>
+        <label for="img7">Image 8</label><input type="file" name="img7" id="img7" accept="image/png" /><br>
+        <label for="img8">Image 9</label><input type="file" name="img8" id="img8" accept="image/png" /><br>
+        <label for="img9">Image 10</label><input type="file" name="img9" id="img9" accept="image/png" /><br>
+        <input type="submit" value="Print it!" />
+    </form>
+
+    <hr>
+
+    <h1>API Reference</h1>
+
+    <h2>POST /print</h2>
+    <p>Prints PNG image(s).</p>
+
+    <h3 id="post_print_res_code">Response Status Code</h3>
+    <dl>
+        <dt>200 OK</dt>
+        <dd>When image(s) has transmitted to MBrush successfully.</dd>
+        <dt>400 Bad Request</dt>
+        <dd>When non-PNG image(s) passed, or a general Bad Request error occured.</dd>
+        <dt>500 Internal Server Error</dt>
+        <dd>When an unexpected error occured.</dd>
+        <dt>502 Bad Gateway</dt>
+        <dd>When the transmission to MBrush failed (maybe MBrush is powered off).</dd>
+    </dl>
+    <p>If the response code indicates an error, additional infomation will be avaliable in the response body.</p>
+
+    <h3 id="post_print_sample">HTML Sample</h3>
+    <pre><code>&lt;form method="POST" enctype="multipart/form-data" action="/print"&gt;
+    &lt;input type="file" name="img0" accept="image/png" /&gt;
+    &lt;input type="file" name="img1" accept="image/png" /&gt;
+    &lt;input type="file" name="img2" accept="image/png" /&gt;
+    &lt;input type="file" name="img3" accept="image/png" /&gt;
+    &lt;input type="file" name="img4" accept="image/png" /&gt;
+    &lt;input type="file" name="img5" accept="image/png" /&gt;
+    &lt;input type="file" name="img6" accept="image/png" /&gt;
+    &lt;input type="file" name="img7" accept="image/png" /&gt;
+    &lt;input type="file" name="img8" accept="image/png" /&gt;
+    &lt;input type="file" name="img9" accept="image/png" /&gt;
+    &lt;input type="submit" value="Submit" /&gt;
+&lt;/form&gt;</code></pre>
+    
+    <h2>GET /setting</h2>
+    <p>Gets current MBrush settings.</p>
+
+    <h3 id="get_setting_res_body">Response Body</h3>
+    <p>Data type is application/json. The JSON structure is described in TypeScript type definitions below:</p>
+    <pre><code>{
+    brightness: number,
+    saturation: number,
+    density: number,
+    cal: {
+        c: number,
+        m: number,
+        y: number,
+    },
+    rtl: boolean,
+    c_order: 'cmy' | 'cym',
+    c_width: 4.4 | 4.9,
+    dpi: 300 | 600 | 1200,
+}</code></pre>
+    
+<h2>POST /setting</h2>
+<p>Sets new MBrush settings.</p>
+
+<h3>Request Body</h3>
+<p>Data type must be application/json. See <a href="#get_setting_res_body">#GET /setting/Response Body</a> for JSON structure. You can also include only the properties you want to change.</p>
+
+<h3>Response Body</h3>
+<p>Same as <a href="#get_setting_res_body">#GET /setting/Response Body</a>.</p>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+--- mb/mb_ser/js/workers/mbc.js	2020-08-05 10:47:09.346663600 +0900
++++ ./mbc.js	2020-08-31 21:15:19.401550800 +0900
+@@ -5,8 +5,11 @@
+  * Author: Duke Fong <d@d-l.io>
+  */
+ 
+-import { L } from '../utils/lang.js'
+-import { Queue } from '../utils/helper.js';
++// dummy
++class Queue { }
++class Worker {
++    constructor(x) { }
++}
+ 
+ // bgr
+ const mt = new Uint8Array([
+@@ -72,4 +75,4 @@ mbc.conv = async function(img_dat, brigh
+     }
+ };
+ 
+-export { mbc };
++module.exports = { get_mt };

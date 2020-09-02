@@ -1,0 +1,1 @@
+export function get_mt(cal: { c: number, m: number, y: number }): Uint8Array;
